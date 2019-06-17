@@ -6,7 +6,7 @@ class Calculator implements ActionListener {
   
   private JFrame frame = new JFrame();
   private Double number = 0.0;
-  private boolean pressOther = false;
+  private boolean equalsPressed = false;
   private JButton btnPlus = new JButton("+");
   private JButton btnMinus = new JButton("-");
   private JButton btnMultiply = new JButton("*");
@@ -130,18 +130,21 @@ class Calculator implements ActionListener {
               //Clearing texts of label and text field
               label.setText("");
               txt.setText("");
+              number = 0.0;
     }
     else if (buttonPressed == btnDelete) {
             //Setting functionality for delete button(backspace)
             int length = txt.getText().length();
-            int number = length - 1;
+            int num = length - 1;
             if (length > 0) {
                 StringBuilder back = new StringBuilder(txt.getText());
-                back.deleteCharAt(number);
+                back.deleteCharAt(num);
                 txt.setText(back.toString());
             }
-            if (txt.getText().endsWith("")) {
-                label.setText("");
+            else {
+              label.setText("");
+              txt.setText("");
+              number = 0.0;  
             }
     }
     
@@ -149,20 +152,30 @@ class Calculator implements ActionListener {
         txt.setText(txt.getText() + "0");
     else if(buttonPressed == btnDecimal && txt.getText().indexOf(".") < 0)
         txt.setText(txt.getText() + ".");
-    else if(buttonPressed == btn1)
+    else if(buttonPressed == btn1) {
+        label.setText(label.getText() + "1");
         txt.setText(txt.getText() + "1");
-    else if(buttonPressed == btn2)
+    }
+    else if(buttonPressed == btn2) {
+        label.setText(label.getText() + "2");
         txt.setText(txt.getText() + "2");
-
-    else if(buttonPressed == btn3)
+    }
+    else if(buttonPressed == btn3) {
+        label.setText(label.getText() + "3");
         txt.setText(txt.getText() + "3");
-
-    else if(buttonPressed == btn4)
+    }
+    else if(buttonPressed == btn4) {
+        label.setText(label.getText() + "4");
         txt.setText(txt.getText() + "4");
-    else if(buttonPressed == btn5)
+    }
+    else if(buttonPressed == btn5) {
+        label.setText(label.getText() + "5");
         txt.setText(txt.getText() + "5");
-    else if(buttonPressed == btn6)
+    }
+    else if(buttonPressed == btn6) {
+        label.setText(label.getText() + "6");
         txt.setText(txt.getText() + "6");
+    }
     else if(buttonPressed == btn7) {
         label.setText(label.getText() + "7");
         txt.setText(txt.getText() + "7");
@@ -177,18 +190,23 @@ class Calculator implements ActionListener {
     }
     else if (buttonPressed == btnPlus) {
             //String str = txt.getText();
-            number = Double.parseDouble(txt.getText());
+            number += Double.parseDouble(txt.getText());
             txt.setText("");
             label.setText(label.getText() + " + ");
             plus();
-            pressOther = true;
+    }
+    else if(buttonPressed == btnMinus) {
+        
     }
   }
   
-  public void plus() {
+  public void plus() { 
       String s = txt.getText();
-      while(s.isEmpty() && !pressOther)
-          s = txt.getText();
+      number += Double.parseDouble(s);
+      txt.setText(number.toString());
+  }
+  public void minus() { 
+      String s = txt.getText();
       number += Double.parseDouble(s);
       txt.setText(number.toString());
   }
