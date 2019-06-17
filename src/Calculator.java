@@ -5,7 +5,7 @@ import java.awt.event.*;
 class Calculator implements ActionListener {
   
   private JFrame frame = new JFrame();
-  private double number;
+  private double number = 0.0;
   private JButton btnPlus = new JButton("+");
   private JButton btnMinus = new JButton("-");
   private JButton btnMultiply = new JButton("*");
@@ -146,43 +146,38 @@ class Calculator implements ActionListener {
     
     else if (buttonPressed == btn0 && !txt.getText().equals("0"))
         txt.setText(txt.getText() + "0");
-    else if(buttonPressed == btnDecimal && txt.getText().indexOf(".") < 0) {
-        
+    else if(buttonPressed == btnDecimal && txt.getText().indexOf(".") < 0)
         txt.setText(txt.getText() + ".");
-    }
-    else if(buttonPressed == btn1) {
+    else if(buttonPressed == btn1)
         txt.setText(txt.getText() + "1");
-    }
-    else if(buttonPressed == btn2) {
+    else if(buttonPressed == btn2)
         txt.setText(txt.getText() + "2");
-    }
-    else if(buttonPressed == btn3) {
+
+    else if(buttonPressed == btn3)
         txt.setText(txt.getText() + "3");
-    }
-    else if(buttonPressed == btn4) {
+
+    else if(buttonPressed == btn4)
         txt.setText(txt.getText() + "4");
-    }
-    else if(buttonPressed == btn5) {
+    else if(buttonPressed == btn5)
         txt.setText(txt.getText() + "5");
-    }
-    else if(buttonPressed == btn6) {
+    else if(buttonPressed == btn6)
         txt.setText(txt.getText() + "6");
-    }
-    else if(buttonPressed == btn7) {
+    else if(buttonPressed == btn7)
         txt.setText(txt.getText() + "7");
-    }
-    else if(buttonPressed == btn8) {
+
+    else if(buttonPressed == btn8)
         txt.setText(txt.getText() + "8");
-    }
-    else if(buttonPressed == btn9) {
+
+    else if(buttonPressed == btn9)
         txt.setText(txt.getText() + "9");
-    }
     else if (buttonPressed == btnPlus) {
             String str = txt.getText();
             number = Double.parseDouble(txt.getText());
             txt.setText("");
-            label.setText(str + "+");
+            label.setText(str + " + ");
+            
     }
   }
+  
   
 }
