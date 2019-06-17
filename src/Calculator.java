@@ -133,18 +133,16 @@ class Calculator implements ActionListener {
               number = 0.0;
     }
     else if (buttonPressed == btnDelete) {
-            //Setting functionality for delete button(backspace)
             int length = txt.getText().length();
-            int num = length - 1;
+            int number = length - 1;
             if (length > 0) {
                 StringBuilder back = new StringBuilder(txt.getText());
-                back.deleteCharAt(num);
+                back.deleteCharAt(number);
                 txt.setText(back.toString());
+ 
             }
-            else {
-              label.setText("");
-              txt.setText("");
-              number = 0.0;  
+            if (txt.getText().endsWith("")) {
+                label.setText("");
             }
     }
     
@@ -152,63 +150,40 @@ class Calculator implements ActionListener {
         txt.setText(txt.getText() + "0");
     else if(buttonPressed == btnDecimal && txt.getText().indexOf(".") < 0)
         txt.setText(txt.getText() + ".");
-    else if(buttonPressed == btn1) {
-        label.setText(label.getText() + "1");
+    else if(buttonPressed == btn1)
         txt.setText(txt.getText() + "1");
-    }
-    else if(buttonPressed == btn2) {
-        label.setText(label.getText() + "2");
+    else if(buttonPressed == btn2)
         txt.setText(txt.getText() + "2");
-    }
-    else if(buttonPressed == btn3) {
-        label.setText(label.getText() + "3");
+    else if(buttonPressed == btn3)
         txt.setText(txt.getText() + "3");
-    }
-    else if(buttonPressed == btn4) {
-        label.setText(label.getText() + "4");
+    else if(buttonPressed == btn4)
         txt.setText(txt.getText() + "4");
-    }
-    else if(buttonPressed == btn5) {
-        label.setText(label.getText() + "5");
+    else if(buttonPressed == btn5)
         txt.setText(txt.getText() + "5");
-    }
-    else if(buttonPressed == btn6) {
-        label.setText(label.getText() + "6");
+    else if(buttonPressed == btn6)
         txt.setText(txt.getText() + "6");
-    }
-    else if(buttonPressed == btn7) {
-        label.setText(label.getText() + "7");
+    else if(buttonPressed == btn7)
         txt.setText(txt.getText() + "7");
-    }
-    else if(buttonPressed == btn8) {
-        label.setText(label.getText() + "8");
+    else if(buttonPressed == btn8)
         txt.setText(txt.getText() + "8");
-    }
-    else if(buttonPressed == btn9) {
-        label.setText(label.getText() + "9");
+    else if(buttonPressed == btn9)
         txt.setText(txt.getText() + "9");
-    }
     else if (buttonPressed == btnPlus) {
             //String str = txt.getText();
-            number += Double.parseDouble(txt.getText());
+            number = Double.parseDouble(txt.getText());
             txt.setText("");
-            label.setText(label.getText() + " + ");
-            plus();
+            //plus();
     }
     else if(buttonPressed == btnMinus) {
-        
+            number = Double.parseDouble(txt.getText());
+            txt.setText("");
+            //minus();
     }
-  }
-  
-  public void plus() { 
-      String s = txt.getText();
-      number += Double.parseDouble(s);
-      txt.setText(number.toString());
-  }
-  public void minus() { 
-      String s = txt.getText();
-      number += Double.parseDouble(s);
-      txt.setText(number.toString());
+    else if(buttonPressed == btnMultiply) {
+            number = Double.parseDouble(txt.getText());
+            txt.setText("");
+            //multiply();
+    }
   }
   
 }
