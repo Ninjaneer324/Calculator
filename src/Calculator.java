@@ -168,9 +168,10 @@ class Calculator implements ActionListener {
         txt.setText(txt.getText() + "8");
     else if(buttonPressed == btn9)
         txt.setText(txt.getText() + "9");
-    //Add plus, minus, etc. and make sure it was continuous ability
+    //Add plus, minus, etc. and make sure it was continuous multi-operation ability
     //Fix the above label issue
-    //Maybe try stack to keep track of operations and use the last thing inputted when a number is inputted
+    //Maybe try stack or array to keep track of operations and use the last thing inputted when a number is inputted
+    //Erase comments and add new ones before commit
   }
   
 }
