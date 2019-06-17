@@ -5,7 +5,8 @@ import java.awt.event.*;
 class Calculator implements ActionListener {
   
   private JFrame frame = new JFrame();
-  private double number = 0.0;
+  private Double number = 0.0;
+  private boolean pressOther = false;
   private JButton btnPlus = new JButton("+");
   private JButton btnMinus = new JButton("-");
   private JButton btnMultiply = new JButton("*");
@@ -162,22 +163,34 @@ class Calculator implements ActionListener {
         txt.setText(txt.getText() + "5");
     else if(buttonPressed == btn6)
         txt.setText(txt.getText() + "6");
-    else if(buttonPressed == btn7)
+    else if(buttonPressed == btn7) {
+        label.setText(label.getText() + "7");
         txt.setText(txt.getText() + "7");
-
-    else if(buttonPressed == btn8)
+    }
+    else if(buttonPressed == btn8) {
+        label.setText(label.getText() + "8");
         txt.setText(txt.getText() + "8");
-
-    else if(buttonPressed == btn9)
+    }
+    else if(buttonPressed == btn9) {
+        label.setText(label.getText() + "9");
         txt.setText(txt.getText() + "9");
+    }
     else if (buttonPressed == btnPlus) {
-            String str = txt.getText();
+            //String str = txt.getText();
             number = Double.parseDouble(txt.getText());
             txt.setText("");
-            label.setText(str + " + ");
-            
+            label.setText(label.getText() + " + ");
+            plus();
+            pressOther = true;
     }
   }
   
+  public void plus() {
+      String s = txt.getText();
+      while(s.isEmpty() && !pressOther)
+          s = txt.getText();
+      number += Double.parseDouble(s);
+      txt.setText(number.toString());
+  }
   
 }
