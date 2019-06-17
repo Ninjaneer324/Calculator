@@ -1,11 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 
 class Calculator implements ActionListener {
   
   private JFrame frame = new JFrame();
   private Double number = 0.0;
+  private Double answer = 0.0;
   private boolean equalsPressed = false;
   private JButton btnPlus = new JButton("+");
   private JButton btnMinus = new JButton("-");
@@ -28,8 +30,9 @@ class Calculator implements ActionListener {
   private JButton btnDecimal = new JButton(".");
   private boolean equalPressed = false;
   private JLabel label = new JLabel();
-  private JTextField txt = new JTextField();
-
+  private JTextField txt = new JTextField("");
+  //private ArrayList<String> operators = new ArrayList<String>();
+  String calculation = "";
 
   public Calculator(){
     frame.setTitle("Calculator");
@@ -67,6 +70,7 @@ class Calculator implements ActionListener {
     btnDelete.setBounds(10,455,100,80);
     btn0.setBounds(140,455,100,80);
     btnDecimal.setBounds(270,455,100,80);
+    btnEquals.setBounds(390,510, 200,25);
     //txtB.setBounds(100,35,100,20);
     //txtC.setBounds(100,65,100,20);
 
@@ -96,6 +100,7 @@ class Calculator implements ActionListener {
     frame.add(btnDelete);
     frame.add(btn0);
     frame.add(btnDecimal);
+    frame.add(btnEquals);
     //add(lblA);
     //add(lblB);
     //add(lblC);
@@ -131,6 +136,7 @@ class Calculator implements ActionListener {
               label.setText("");
               txt.setText("");
               number = 0.0;
+              //operators.clear();
     }
     else if (buttonPressed == btnDelete) {
             int length = txt.getText().length();
@@ -141,13 +147,17 @@ class Calculator implements ActionListener {
                 txt.setText(back.toString());
  
             }
-            if (txt.getText().endsWith("")) {
+            else {
                 label.setText("");
+                //this.number = 0.0;
+                //operators.clear();
             }
     }
     
-    else if (buttonPressed == btn0 && !txt.getText().equals("0"))
+    else if (buttonPressed == btn0 && !txt.getText().equals("0")) {
+        label.setText(label.getText() + "0");
         txt.setText(txt.getText() + "0");
+    }
     else if(buttonPressed == btnDecimal && txt.getText().indexOf(".") < 0)
         txt.setText(txt.getText() + ".");
     else if(buttonPressed == btn1)
@@ -168,10 +178,113 @@ class Calculator implements ActionListener {
         txt.setText(txt.getText() + "8");
     else if(buttonPressed == btn9)
         txt.setText(txt.getText() + "9");
-    //Add plus, minus, etc. and make sure it was continuous multi-operation ability
+    else if (buttonPressed == btnPlus) {
+            String str = txt.getText();
+            number = Double.parseDouble(txt.getText());
+            txt.setText("");
+            label.setText(str + " + ");
+            calculation = "+";
+        } 
+    else if (buttonPressed == btnMinus) {
+            String str = txt.getText();
+            number = Double.parseDouble(txt.getText());
+            txt.setText("");
+            label.setText(str + " - ");
+            calculation = "-";
+        } 
+    else if (buttonPressed == btnMultiply) {
+            String str = txt.getText();
+            number = Double.parseDouble(txt.getText());
+            txt.setText("");
+            label.setText(str + " x ");
+            calculation = "*";
+        } 
+    else if (buttonPressed == btnDivide) {
+            String str = txt.getText();
+            number = Double.parseDouble(txt.getText());
+            txt.setText("");
+            label.setText(str + " / ");
+            calculation = "/";
+        }
+    else if(buttonPressed == btnEquals) {
+        switch (calculation) {
+                case "+":
+                    answer = number + Double.parseDouble(txt.getText());
+                    if (Double.toString(answer).endsWith(".0")) {
+                        txt.setText(Double.toString(answer).replace(".0", ""));
+                    } else {
+                        txt.setText(Double.toString(answer));
+                    }
+                    label.setText("");
+                    calculation = "";
+                    break;
+                case "-":
+                    answer = number - Double.parseDouble(txt.getText());
+                    if (Double.toString(answer).endsWith(".0")) {
+                        txt.setText(Double.toString(answer).replace(".0", ""));
+                    } else {
+                        txt.setText(Double.toString(answer));
+                    }
+                    label.setText("");
+                    calculation = "";
+                    break;
+                case "*":
+                    answer = number * Double.parseDouble(txt.getText());
+                    if (Double.toString(answer).endsWith(".0")) {
+                        txt.setText(Double.toString(answer).replace(".0", ""));
+                    } else {
+                        txt.setText(Double.toString(answer));
+                    }
+                    label.setText("");
+                    calculation = "";
+                    break;
+                case "/":
+                    answer = number / Double.parseDouble(txt.getText());
+                    if (Double.toString(answer).endsWith(".0")) {
+                        txt.setText(Double.toString(answer).replace(".0", ""));
+                    } else {
+                        txt.setText(Double.toString(answer));
+                    }
+                    label.setText("");
+                    calculation = "";
+                    break;
+            }
+    }
+    /*else if(!operators.isEmpty() && operators.size() > 1) {
+            String op = operators.get(0);
+            switch(op) {
+                case "+":
+                    number += Double.parseDouble(txt.getText());
+                    break;
+                case "-":
+                    number -= Double.parseDouble(txt.getText());
+                    break;
+                case "*":
+                    number *= Double.parseDouble(txt.getText());
+                    break;
+                case "/":
+                    number /= Double.parseDouble(txt.getText());
+                    break;
+                case "=":
+                    txt.setText(number.toString());
+                    label.setText(""); 
+                    number = 0.0;
+                    operators.clear();
+                    break;
+            }
+            txt.setText(number.toString());
+        }
+    else if(!txt.getText().isEmpty() && operators.isEmpty()){
+           if(buttonPressed == btnPlus)
+               operators.add("+");
+        } */
+    
     //Fix the above label issue
     //Maybe try stack or array to keep track of operations and use the last thing inputted when a number is inputted
+    //Add operators
+    //Maybe take a whole new approach with how calculations are done?
     //Erase comments and add new ones before commit
+    
   }
   
 }
