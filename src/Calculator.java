@@ -5,30 +5,29 @@ import java.util.*;
 
 class Calculator implements ActionListener {
   
-  private JFrame frame = new JFrame();
+  private final JFrame frame = new JFrame();
   private Double number = 0.0;
   private Double answer = 0.0;
-  private boolean equalsPressed = false;
-  private JButton btnPlus = new JButton("+");
-  private JButton btnMinus = new JButton("-");
-  private JButton btnMultiply = new JButton("*");
-  private JButton btnDivide = new JButton("/");
-  private JButton btnPlusOrMinus = new JButton("+/-");
-  private JButton btnEquals = new JButton("=");
-  private JButton btnClear = new JButton("CC");
-  private JButton btnDelete = new JButton("Del");
-  private JButton btn1 = new JButton("1");
-  private JButton btn2 = new JButton("2");
-  private JButton btn3 = new JButton("3");
-  private JButton btn4 = new JButton("4");
-  private JButton btn5 = new JButton("5");
-  private JButton btn6 = new JButton("6");
-  private JButton btn7 = new JButton("7");
-  private JButton btn8 = new JButton("8");
-  private JButton btn9 = new JButton("9");
-  private JButton btn0 = new JButton("0");
-  private JButton btnDecimal = new JButton(".");
-  private boolean equalPressed = false;
+  private final JButton btnPlusOrMinus = new JButton("+/-");
+  private final JButton btnClear = new JButton("CC");
+  private final JButton btnPlus = new JButton("+");
+  private final JButton btnMinus = new JButton("-");
+  private final JButton btnMultiply = new JButton("*");
+  private final JButton btnDivide = new JButton("/");
+  private final JButton btnSquareRoot = new JButton("\u221A");
+  private final JButton btnEquals = new JButton("=");
+  private final JButton btnDelete = new JButton("Del");
+  private final JButton btn1 = new JButton("1");
+  private final JButton btn2 = new JButton("2");
+  private final JButton btn3 = new JButton("3");
+  private final JButton btn4 = new JButton("4");
+  private final JButton btn5 = new JButton("5");
+  private final JButton btn6 = new JButton("6");
+  private final JButton btn7 = new JButton("7");
+  private final JButton btn8 = new JButton("8");
+  private final JButton btn9 = new JButton("9");
+  private final JButton btn0 = new JButton("0");
+  private final JButton btnDecimal = new JButton(".");
   private JLabel label = new JLabel();
   private JTextField txt = new JTextField("");
   //private ArrayList<String> operators = new ArrayList<String>();
@@ -53,7 +52,6 @@ class Calculator implements ActionListener {
   }
 
   private void addComponents(){
-    //btnClose.setBounds(300,130, 80,25);
     label.setBounds(450, 0, 50, 50);
     frame.add(label);
     
@@ -85,6 +83,10 @@ class Calculator implements ActionListener {
     btnDivide.setBounds(500,240,90,25);
     btnDivide.setFont(new Font("Arial", Font.PLAIN, 15));
     frame.add(btnDivide);
+    
+    btnSquareRoot.setBounds(390, 275, 90, 25);
+    btnSquareRoot.setFont(new Font("Arial", Font.PLAIN, 15));
+    frame.add(btnSquareRoot);
     
     btn1.setBounds(10,170,100,80);
     btn1.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -146,6 +148,7 @@ class Calculator implements ActionListener {
     btnMinus.addActionListener(this);
     btnMultiply.addActionListener(this);
     btnDivide.addActionListener(this);
+    btnSquareRoot.addActionListener(this);
     btn1.addActionListener(this);
     btn2.addActionListener(this);
     btn3.addActionListener(this);
@@ -163,52 +166,8 @@ class Calculator implements ActionListener {
 
   public void actionPerformed(ActionEvent e) {
     Object buttonPressed = e.getSource();
-    if (buttonPressed == btnClear) {
-              //Clearing texts of label and text field
-              txt.setText("");
-              label.setText("");
-              number = 0.0;
-              answer = 0.0;
-              ops = 0;
-              calculation = "";
-              //operators.clear();
-    }
-    
-    else if (buttonPressed == btnDelete) {
-            int length = txt.getText().length();
-            if (length > 0) {
-                String back = txt.getText().substring(0, length - 1);
-                txt.setText(back);
-            }
-            else {
-              txt.setText("");
-              label.setText("");
-              number = 0.0;
-              answer = 0.0;
-              ops = 0;
-              calculation = "";
-            }
-    }
-    
-    else if(buttonPressed == btnPlusOrMinus) {
-        number = Double.parseDouble(txt.getText());
-        if(txt.getText().charAt(0) == '-'){
-            txt.setText(txt.getText().substring(1));
-        }
-        else {
-            txt.setText("-"+txt.getText());
-        }
-    }
-    
-    else if (buttonPressed == btn0 && !txt.getText().equals("0")) {
-        //label.setText(label.getText() + "0");
-        txt.setText(txt.getText() + "0");
-    }
-    else if(buttonPressed == btnDecimal && !txt.getText().contains("."))
-        txt.setText(txt.getText() + ".");
-    else if(buttonPressed == btn1) {
+    if(buttonPressed == btn1)
         txt.setText(txt.getText() + "1");
-    }
     else if(buttonPressed == btn2)
         txt.setText(txt.getText() + "2");
     else if(buttonPressed == btn3)
@@ -225,6 +184,50 @@ class Calculator implements ActionListener {
         txt.setText(txt.getText() + "8");
     else if(buttonPressed == btn9)
         txt.setText(txt.getText() + "9");
+    else if (buttonPressed == btnDelete) {
+            int length = txt.getText().length();
+            if (length > 0) {
+                String back = txt.getText().substring(0, length - 1);
+                txt.setText(back);
+            }
+            else {
+              txt.setText("");
+              label.setText("");
+              number = 0.0;
+              answer = 0.0;
+              ops = 0;
+              calculation = "";
+            }
+    }
+    
+    else if (buttonPressed == btn0 && !txt.getText().equals("0")) {
+        //label.setText(label.getText() + "0");
+        txt.setText(txt.getText() + "0");
+    }
+    
+    else if(buttonPressed == btnDecimal && !txt.getText().contains("."))
+        txt.setText(txt.getText() + ".");
+    
+    else if(buttonPressed == btnPlusOrMinus) {
+        number = Double.parseDouble(txt.getText());
+        if(txt.getText().charAt(0) == '-'){
+            txt.setText(txt.getText().substring(1));
+        }
+        else {
+            txt.setText("-"+txt.getText());
+        }
+    }
+    
+    else if (buttonPressed == btnClear) {
+              //Clearing texts of label and text field
+              txt.setText("");
+              label.setText("");
+              number = 0.0;
+              answer = 0.0;
+              ops = 0;
+              calculation = "";
+              //operators.clear();
+    }
     else if (buttonPressed == btnPlus) {
         number = Double.parseDouble(txt.getText());
         if(ops == 0)
@@ -346,6 +349,16 @@ class Calculator implements ActionListener {
         }
         calculation = "/";
         ops++;
+    }
+
+    else if(buttonPressed == btnSquareRoot) {
+        number = Math.sqrt(Double.parseDouble(txt.getText()));
+        if (Double.toString(number).endsWith(".0")) {
+            txt.setText(Double.toString(number).replace(".0", "") + "");
+        } 
+        else {
+                txt.setText(Double.toString(number)  + "");
+        }
     }
     else if(buttonPressed == btnEquals) {
         number = Double.parseDouble(txt.getText());
