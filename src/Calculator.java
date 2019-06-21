@@ -140,13 +140,12 @@ class Calculator implements ActionListener {
   }
 
   private void addEvents(){
+    btnPlusOrMinus.addActionListener(this);
+    btnClear.addActionListener(this);
     btnPlus.addActionListener(this);
     btnMinus.addActionListener(this);
     btnMultiply.addActionListener(this);
     btnDivide.addActionListener(this);
-    btnPlusOrMinus.addActionListener(this);
-    btnEquals.addActionListener(this);
-    btnClear.addActionListener(this);
     btn1.addActionListener(this);
     btn2.addActionListener(this);
     btn3.addActionListener(this);
@@ -159,6 +158,7 @@ class Calculator implements ActionListener {
     btnDelete.addActionListener(this);
     btn0.addActionListener(this);
     btnDecimal.addActionListener(this);
+    btnEquals.addActionListener(this);
   }
 
   public void actionPerformed(ActionEvent e) {
@@ -173,6 +173,7 @@ class Calculator implements ActionListener {
               calculation = "";
               //operators.clear();
     }
+    
     else if (buttonPressed == btnDelete) {
             int length = txt.getText().length();
             if (length > 0) {
@@ -188,6 +189,17 @@ class Calculator implements ActionListener {
               calculation = "";
             }
     }
+    
+    else if(buttonPressed == btnPlusOrMinus) {
+        number = Double.parseDouble(txt.getText());
+        if(txt.getText().charAt(0) == '-'){
+            txt.setText(txt.getText().substring(1));
+        }
+        else {
+            txt.setText("-"+txt.getText());
+        }
+    }
+    
     else if (buttonPressed == btn0 && !txt.getText().equals("0")) {
         //label.setText(label.getText() + "0");
         txt.setText(txt.getText() + "0");
@@ -242,15 +254,6 @@ class Calculator implements ActionListener {
         }
         calculation = "+";
         ops++;
-    }
-    else if(buttonPressed == btnPlusOrMinus) {
-        number = Double.parseDouble(txt.getText());
-        if(txt.getText().charAt(0) == '-'){
-            txt.setText(txt.getText().substring(1));
-        }
-        else {
-            txt.setText("-"+txt.getText());
-        }
     }
     else if (buttonPressed == btnMinus) {
             //String str = txt.getText();
