@@ -3,7 +3,6 @@ package calculator;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
 
 class Calculator implements ActionListener {
   
@@ -40,10 +39,7 @@ class Calculator implements ActionListener {
     frame.setTitle("Calculator");
     frame.setSize(600, 600);
     frame.getContentPane().setLayout(null);
-    int r = (int) (Math.random() * 256) + 0;
-    int g = (int) (Math.random() * 256) + 0;
-    int b = (int) (Math.random() * 256) + 0;
-    frame.getContentPane().setBackground(new Color(r, g, b));
+    frame.getContentPane().setBackground(Color.BLACK);
     frame.setResizable(false);
     frame.setLocationRelativeTo(null);
     //frame.setVisible(true);
@@ -55,6 +51,7 @@ class Calculator implements ActionListener {
 
   private void addComponents(){
     label.setBounds(450, 0, 50, 50);
+    label.setForeground(Color.WHITE);
     frame.add(label);
     
     txt.setBounds(10,60,580,100);
