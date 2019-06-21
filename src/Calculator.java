@@ -32,8 +32,8 @@ class Calculator implements ActionListener {
   private JLabel label = new JLabel();
   private JTextField txt = new JTextField("");
   //private ArrayList<String> operators = new ArrayList<String>();
-  String calculation = "";
-  int ops = 0;
+  private String calculation = "";
+  private int ops = 0;
 
   public Calculator(){
     frame.setTitle("Calculator");
@@ -55,61 +55,88 @@ class Calculator implements ActionListener {
   private void addComponents(){
     //btnClose.setBounds(300,130, 80,25);
     label.setBounds(450, 0, 50, 50);
-    txt.setBounds(10,60,580,100);
-    btnPlusOrMinus.setBounds(390,170,90,25);
-    btnClear.setBounds(500,170,90,25);
-    btnPlus.setBounds(390,205,90,25);
-    btnMinus.setBounds(500,205,90,25);
-    btnMultiply.setBounds(390,240,90,25);
-    btnDivide.setBounds(500,240,90,25);
-    btn1.setBounds(10,170,100,80);
-    btn2.setBounds(140,170,100,80);
-    btn3.setBounds(270,170,100,80);
-    btn4.setBounds(10,265,100,80);
-    btn5.setBounds(140,265,100,80);
-    btn6.setBounds(270,265,100,80);
-    btn7.setBounds(10,360,100,80);
-    btn8.setBounds(140,360,100,80);
-    btn9.setBounds(270,360,100,80);
-    btnDelete.setBounds(10,455,100,80);
-    btn0.setBounds(140,455,100,80);
-    btnDecimal.setBounds(270,455,100,80);
-    btnEquals.setBounds(390,510, 200,25);
-    //txtB.setBounds(100,35,100,20);
-    //txtC.setBounds(100,65,100,20);
-
-    //lblA.setBounds(20,10,100,20);
-    //lblB.setBounds(20,35,100,20);
-    //lblC.setBounds(20,65,100,20);
-
-
-    //add(btnClose);
     frame.add(label);
+    
+    txt.setBounds(10,60,580,100);
+    txt.setFont(new Font("Arial", Font.BOLD, 20));
+    txt.setHorizontalAlignment(SwingConstants.RIGHT);
     frame.add(txt);
+    
+    btnPlusOrMinus.setBounds(390,170,90,25);
+    btnPlusOrMinus.setFont(new Font("Arial", Font.PLAIN, 15));
     frame.add(btnPlusOrMinus);
+    
+    btnClear.setBounds(500,170,90,25);
+    btnClear.setFont(new Font("Arial", Font.PLAIN, 15));
     frame.add(btnClear);
+    
+    btnPlus.setBounds(390,205,90,25);
+    btnPlus.setFont(new Font("Arial", Font.PLAIN, 15));
     frame.add(btnPlus);
+    
+    btnMinus.setBounds(500,205,90,25);
+    btnMinus.setFont(new Font("Arial", Font.PLAIN, 15));
     frame.add(btnMinus);
+    
+    btnMultiply.setBounds(390,240,90,25);
+    btnMultiply.setFont(new Font("Arial", Font.PLAIN, 15));
     frame.add(btnMultiply);
+    
+    btnDivide.setBounds(500,240,90,25);
+    btnDivide.setFont(new Font("Arial", Font.PLAIN, 15));
     frame.add(btnDivide);
+    
+    btn1.setBounds(10,170,100,80);
+    btn1.setFont(new Font("Arial", Font.PLAIN, 15));
     frame.add(btn1);
+    
+    btn2.setBounds(140,170,100,80);
+    btn2.setFont(new Font("Arial", Font.PLAIN, 15));
     frame.add(btn2);
+    
+    btn3.setBounds(270,170,100,80);
+    btn3.setFont(new Font("Arial", Font.PLAIN, 15));
     frame.add(btn3);
+    
+    btn4.setBounds(10,265,100,80);
+    btn4.setFont(new Font("Arial", Font.PLAIN, 15));
     frame.add(btn4);
+    
+    btn5.setBounds(140,265,100,80);
+    btn5.setFont(new Font("Arial", Font.PLAIN, 15));
     frame.add(btn5);
+    
+    btn6.setBounds(270,265,100,80);
+    btn6.setFont(new Font("Arial", Font.PLAIN, 15));
     frame.add(btn6);
+    
+    btn7.setBounds(10,360,100,80);
+    btn7.setFont(new Font("Arial", Font.PLAIN, 15));
     frame.add(btn7);
+    
+    btn8.setBounds(140,360,100,80);
+    btn8.setFont(new Font("Arial", Font.PLAIN, 15));
     frame.add(btn8);
+    
+    btn9.setBounds(270,360,100,80);
+    btn9.setFont(new Font("Arial", Font.PLAIN, 15));
     frame.add(btn9);
+    
+    btnDelete.setBounds(10,455,100,80);
+    btnDelete.setFont(new Font("Arial", Font.PLAIN, 15));
     frame.add(btnDelete);
+    
+    btn0.setBounds(140,455,100,80);
+    btn0.setFont(new Font("Arial", Font.PLAIN, 15));
     frame.add(btn0);
+    
+    btnDecimal.setBounds(270,455,100,80);
+    btnDecimal.setFont(new Font("Arial", Font.PLAIN, 15));
     frame.add(btnDecimal);
-    frame.add(btnEquals);
-    //add(lblA);
-    //add(lblB);
-    //add(lblC);
-    //add(txtB);
-    //add(txtC);
+    
+    btnEquals.setBounds(390,510, 200,25);
+    btnEquals.setFont(new Font("Arial", Font.PLAIN, 15));
+    frame.add(btnEquals); 
   }
 
   private void addEvents(){
@@ -129,6 +156,7 @@ class Calculator implements ActionListener {
     btn7.addActionListener(this);
     btn8.addActionListener(this);
     btn9.addActionListener(this);
+    btnDelete.addActionListener(this);
     btn0.addActionListener(this);
     btnDecimal.addActionListener(this);
   }
@@ -137,7 +165,6 @@ class Calculator implements ActionListener {
     Object buttonPressed = e.getSource();
     if (buttonPressed == btnClear) {
               //Clearing texts of label and text field
-              //label.setText("");
               txt.setText("");
               label.setText("");
               number = 0.0;
@@ -148,12 +175,9 @@ class Calculator implements ActionListener {
     }
     else if (buttonPressed == btnDelete) {
             int length = txt.getText().length();
-            int num = length - 1;
             if (length > 0) {
-                StringBuilder back = new StringBuilder(txt.getText());
-                back.deleteCharAt(num);
-                txt.setText(back.toString());
- 
+                String back = txt.getText().substring(0, length - 1);
+                txt.setText(back);
             }
             else {
               txt.setText("");
@@ -164,15 +188,15 @@ class Calculator implements ActionListener {
               calculation = "";
             }
     }
-    
     else if (buttonPressed == btn0 && !txt.getText().equals("0")) {
         //label.setText(label.getText() + "0");
         txt.setText(txt.getText() + "0");
     }
-    else if(buttonPressed == btnDecimal && txt.getText().indexOf(".") < 0)
+    else if(buttonPressed == btnDecimal && !txt.getText().contains("."))
         txt.setText(txt.getText() + ".");
-    else if(buttonPressed == btn1)
+    else if(buttonPressed == btn1) {
         txt.setText(txt.getText() + "1");
+    }
     else if(buttonPressed == btn2)
         txt.setText(txt.getText() + "2");
     else if(buttonPressed == btn3)
@@ -219,7 +243,15 @@ class Calculator implements ActionListener {
         calculation = "+";
         ops++;
     }
-    
+    else if(buttonPressed == btnPlusOrMinus) {
+        number = Double.parseDouble(txt.getText());
+        if(txt.getText().charAt(0) == '-'){
+            txt.setText(txt.getText().substring(1));
+        }
+        else {
+            txt.setText("-"+txt.getText());
+        }
+    }
     else if (buttonPressed == btnMinus) {
             //String str = txt.getText();
         number = Double.parseDouble(txt.getText());
@@ -316,7 +348,6 @@ class Calculator implements ActionListener {
         number = Double.parseDouble(txt.getText());
         switch (calculation) {
                 case "+":
-                    //number = Double.parseDouble(txt.getText());
                     answer += number;
                     break;
                 case "-":
@@ -328,13 +359,18 @@ class Calculator implements ActionListener {
                 case "/":
                     answer /= number;
                     break;
+                case "":
+                    answer = number;
+                    break;
             }
-            if (Double.toString(answer).endsWith(".0")) {
-                txt.setText(Double.toString(answer).replace(".0", ""));
-            } 
-            else {
+            if(!calculation.equals("")) {
+                if (Double.toString(answer).endsWith(".0"))
+                    txt.setText(Double.toString(answer).replace(".0", ""));
+                else
                     txt.setText(Double.toString(answer));
             }
+            else
+                txt.setText("");
             label.setText("");
             number = 0.0;
             answer = 0.0;
