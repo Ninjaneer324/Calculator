@@ -17,6 +17,8 @@ class Calculator implements ActionListener {
   private final JButton btnDivide = new JButton("/");
   private final JButton btnSquareRoot = new JButton("\u221A");
   private final JButton btnSquare= new JButton("^2");
+  private final JButton btn15Tip = new JButton("15% Tip");
+  private final JButton btn20Tip = new JButton("20% Tip");
   private final JButton btnEquals = new JButton("=");
   private final JButton btnDelete = new JButton("Del");
   private final JButton btn1 = new JButton("1");
@@ -92,6 +94,14 @@ class Calculator implements ActionListener {
     btnSquare.setFont(new Font("Arial", Font.PLAIN, 15));
     frame.add(btnSquare);
     
+    btn15Tip.setBounds(390, 310, 90, 25);
+    btn15Tip.setFont(new Font("Arial", Font.PLAIN, 15));
+    frame.add(btn15Tip);
+    
+    btn20Tip.setBounds(500, 310, 90, 25);
+    btn20Tip.setFont(new Font("Arial", Font.PLAIN, 15));
+    frame.add(btn20Tip);
+    
     btn1.setBounds(10,170,100,80);
     btn1.setFont(new Font("Arial", Font.PLAIN, 15));
     frame.add(btn1);
@@ -154,6 +164,8 @@ class Calculator implements ActionListener {
     btnDivide.addActionListener(this);
     btnSquareRoot.addActionListener(this);
     btnSquare.addActionListener(this);
+    btn15Tip.addActionListener(this);
+    btn20Tip.addActionListener(this);
     btn1.addActionListener(this);
     btn2.addActionListener(this);
     btn3.addActionListener(this);
@@ -362,6 +374,15 @@ class Calculator implements ActionListener {
             txt.setText(Double.toString(number).replace(".0", "") + "");
         else
             txt.setText(Double.toString(number)  + "");
+    }
+    else if(buttonPressed == btn15Tip) {
+        //ops++;
+        number = Double.parseDouble(txt.getText()) * .15;
+        txt.setText(String.format("%.2f",number));
+    }
+    else if(buttonPressed == btn20Tip) {
+        number = Double.parseDouble(txt.getText()) * .2;
+        txt.setText(String.format("%.2f",number));
     }
     else if(buttonPressed == btnEquals) {
         number = Double.parseDouble(txt.getText());
