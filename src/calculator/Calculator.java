@@ -3,6 +3,7 @@ package calculator;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+//import net.sourceforge.tess4j.*;
 
 class Calculator implements ActionListener {
   
