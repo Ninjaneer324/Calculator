@@ -46,7 +46,6 @@ class Calculator implements ActionListener {
     frame.getContentPane().setBackground(Color.BLACK);
     frame.setResizable(false);
     frame.setLocationRelativeTo(null);
-    //frame.setVisible(true);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     addComponents();    
     addEvents();   
